@@ -6,8 +6,24 @@ cmap w!! w !sudo tee % > /dev/null " (thanks CIA)
 
 set nocompatible
 
+" Vundle config https://github.com/VundleVim/Vundle.vim
+filetype off "required for Vundle
+" add Vundle to runtime and init.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'file:///home/gmarik/path/to/plugin'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'ascenator/L9', {'name': 'newL9'}
+call vundle#end()
+filetype plugin indent on " vundle required
+
+" Themes
 syntax enable
-"colorscheme codedark
+"colorscheme codedark " codedark theme
 
 " not sure what these do yet...
 set exrc
