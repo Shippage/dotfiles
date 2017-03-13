@@ -21,9 +21,13 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 call vundle#end()
 filetype plugin indent on " vundle required
 
+Plugin 'Valloric/YouCompleteMe'
+
 " Themes
 syntax enable
 "colorscheme codedark " codedark theme
+set colorcolumn=110
+highlight ColorColumn ctermbg=darkgray
 
 " not sure what these do yet...
 set exrc
