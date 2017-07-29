@@ -26,7 +26,7 @@ green  = #aec795
 
 [bar/Bar]
 # Bar configuration settings.
-bottom           = true 
+bottom           = false 
 dock             = false 
 enable-ipc       = true
 wm-restack       = i3
