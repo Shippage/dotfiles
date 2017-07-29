@@ -1,55 +1,73 @@
 ;:set syn=dosini 
+
 [global/wm]
-margin-top = 10 
-margin-bottom = 5
+# Global settings I copied.
+margin-top		  = 10 
+margin-bottom     = 5
 override-redirect = true
+wm-restack        = true
 
 [colors]
-white = #d1d1d1
-gray = #424242
-black = #212121
-red = #c795ae
-blue = #95aec7
+# Global bar color config.
+# Currently based on deep color vim config.
+background   = #1b202a
+#background   = #2d1e3c
+font-color   = #51617d
+border-color = #51617d
+accent-color = #709d6c
+
+white  = #d1d1d1
+gray   = #424242
+black  = #212121
+red    = #c795ae
+blue   = #95aec7
 yellow = #c7ae95
-green = #aec795
+green  = #aec795
 
 [bar/Bar]
-bottom = false
-dock = false 
-wm-restack = i3
-width = 100%
+# Bar configuration settings.
+bottom           = true 
+dock             = false 
+enable-ipc       = true
+wm-restack       = i3
+fixed-center     = true
+tray-transparent = false
+
+# Bar size settings, just right for my Macbook.
+width  = 100%
 height = 38
 
-enable-ipc = true
-
-padding-left = 3
+padding-left  = 3
 padding-right = 3 
 
 module-margin-right = 1
-module-margin-left = 0
+module-margin-left  = 0
+seperator = 0
+spacing   = 0
 
-modules-left = date vpn
-modules-right = volume temperature filesystem battery cpu memory
-modules-center = i3 vpn
+# Bar module configurations.
+modules-left   = date vpn spotify wireless-network
+modules-right  = volume filesystem battery
+modules-center = i3 bspwm 
+# cpu memory temperature
 
-background = #060606
+background = ${colors.background}
 foreground = ${colors.white}
 
-border-size = 0 
-border-color = #ffffff
+border-size  = 0 
+border-color = ${colors.border-color}
+# cpu memory
 
-seperator = 0
-spacing = 0
-
-underline-size = 2 
-underline-color = ${colors.white}
+underline-size  = 2 
+underline-color = ${colors.accent-color}
 
 tray-detached = false
 tray-position = right
 tray-offset-x = 
-tray-maxsize = 
-tray-padding = 
+tray-maxsize  = 
+tray-padding  = 
 
+# Font settings.
 font-0 = "Roboto-Regular:size=20;5"
 font-1 = "FontAwesome:size=10;0"
 font-2 = "TakaoGothic:weight=bold:size=10;0"
@@ -61,27 +79,32 @@ type = internal/xwindow
 label = %title%
 label-maxlen = 30
 
+# Custom VPN module. Always assume Seattle.
 [module/vpn]
 type = custom/script
 format = <label>
 
-label = connected
+label =  Seattle
+label-padding = 1
 
-exec = echo vpn
+exec = echo vpn connected
 exec-if = pgrep openvpn
+
+click-left = sudo pkill openvpn
+
 interval = 5
-format-underline = ${colors.white}
+format-underline = ${colors.green}
 
 [module/filesystem]
 type = internal/fs
-interval = 25
+interval = 30
 
 mount-0 = /
 ;mount-1 = /home
 ;mount-2 = /invalid/mountpoint
 
 label-mounted =  %free%
-label-mounted-underline = ${colors.white}
+label-mounted-underline = ${colors.accent-color}
 label-mounted-padding = 1
 
 label-unmounted = 
@@ -221,22 +244,25 @@ label = %{F${colors.white}%percentage_used%%{F-}%
 label-underline = ${colors.white}
 label-foreground = ${colors.white}
 
-[module/wifi]
+[module/wireless-network]
 type = internal/network
-interface = net1
+interface = wlan1 
+
 interval = 3.0
+accumulate-stats = true
 
 format-connected-padding = 1
 format-disconnected-padding = 1
 
-format-connected = <label-connected>
+format-connected = <label-connected>!!
 format-connected-underline = ${colors.white}
-format-disconnected-underline = ${colors.gray}
 
-label-connected = %essid%
-label-disconnected = 
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${colors.white}
+
+label-connected = %essid%connected
+label-disconnected = disconnected
 label-disconnected-foreground = ${colors.gray}
-
 
 [module/eth]
 type = internal/network
@@ -257,10 +283,10 @@ label-disconnected-foreground = ${colors.gray}
 [module/date]
 type = internal/date
 date-alt =  %b %d, %I:%M %P
-date =   %a, %I:%M %P 
+date =  %b, %d   %I:%M 
 
 interval = 5
-format-underline = ${colors.white}
+format-underline = ${colors.accent-color}
 ;format-background = ${colors.black}
 format-foreground = ${colors.white}
 format-padding = 1
@@ -269,7 +295,7 @@ format-padding = 1
 type = internal/volume
 
 format-volume = <ramp-volume><label-volume>
-format-underline = ${colors.white}
+format-underline = ${colors.accent-color}
 format-foreground = ${colors.white}
 
 ramp-volume-0 = 
@@ -288,10 +314,10 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging = <label-charging>
 format-charging-underline = ${colors.green}
 format-charging-padding = 1
-label-charging = %percentage%
+label-charging = %percentage%%
 
 format-discharging = <ramp-capacity><label-discharging>
 format-discharging-underline = ${colors.yellow}
@@ -307,82 +333,38 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.white}
 
-animation-charging-0 = 
-animation-charging-1 = 1
-animation-charging-2 = 2
-animation-charging-3 = 3
-animation-charging-4 = 4
-animation-charging-foreground = ${colors.white}
-animation-charging-framerate = 500
-
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 65
 
 format = <label>
-format-underline = ${colors.white}
+format-underline = ${colors.accent-color}
 format-warn = <label-warn>
 format-warn-underline = ${colors.red}
 
 format-padding = 1
-format-warn-padidng = 1
+format-warn-padding = 1
 
 label = %temperature%
-label-warn =  %temperature%
+label-warn = %temperature%
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = #55
-
-
-[module/menu0]
-type = custom/menu
-
-format = <label-toggle> <menu>
-format-underline = ${colors.white}
-format-padding = 1
-
-menu-0-0 = shutdown
-menu-0-0-exec = shutdown now
-menu-0-1 = restart
-menu-0-1-exec = shutdown -r now
-menu-0-2 = cancel
-
-
-label-open = ???
-label-close = ?!?
-
-[module/updates]
+[module/kbtog]
 type = custom/script
 
-exec = echo 
+exec = ~/Documents/scripts/kbtoggle.sh
+interval = 1 
 
+format-underline = ${colors.red}
 
-[module/powermenu]
-type = custom/menu
+[module/spotify]
+type = custom/script
 
-label-open =  power
-label-open-foreground = #e60053
-label-close =  cancel
-label-close-foreground = #e60053
-label-separator = |
-label-separator-foreground = #55
+exec-if = pgrep -x spotify
+exec = ~/.config/polybar/mediaplayer.pl
+interval = 2 
 
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+format-prefix = 
+format-underline = ${colors.green}
 
 ; vim:ft=dosini
