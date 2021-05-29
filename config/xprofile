@@ -1,0 +1,28 @@
+#!/bin/bash
+
+xsetroot -solid '#1d2021'
+xfce4-power-manager &
+if [[ -z 'pgrep redshift' ]]; then redshift & fi
+unclutter -idle 5 -jitter 5 --ignore-scrolling &
+nm-applet &
+#blueman-applet &
+xset b off
+#setxkbmap -option "caps:swapescape"
+
+case "$GDMSESSION" in
+    xfce)
+        ;;
+    cwm)
+        tint2 &
+        xfsettingsd &
+        redshift &
+        #xfce4-panel &
+        #compton -b --vsync drm &
+        ;;
+    spectrwm)
+        xsettingsd &
+        compton -b --vsync drm &
+        ;; 
+    *)
+        ;;
+esac

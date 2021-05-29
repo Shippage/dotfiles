@@ -1,0 +1,39 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ajh17/VimCompletesMe'
+Plugin 'vim-utils/vim-man'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+map <C-n> :NERDTreeToggle<CR>
+"map <C-M-r> :source $MYVIMRC<CR>
+
+
+syntax on
+set noshowmode
+set noshowcmd
+set laststatus=0
+set noruler
+set cmdheight=1
+set noerrorbells
+set vb t_vb=
+set tabstop=8
+set shiftwidth=4
+set expandtab
+set relativenumber
+set nu
+set wrap
+"set colorcolumn=80
+set number relativenumber
+set scrolloff=3

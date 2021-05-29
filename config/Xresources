@@ -1,0 +1,77 @@
+! GLOBAL CONF
+
+!Xft.adpi: 192
+Xft.adpi: 120
+
+! THEME
+
+#include "/home/shipp/.config/xcolors/xcolor-nord"
+
+!*.foreground:  FOREGROUND
+*.foreground:  COLOR7
+*.background:  BACKGROUND
+*.cursorColor: FOREGROUND
+
+*.color0:      COLOR0
+*.color1:      COLOR1
+*.color2:      COLOR2
+*.color3:      COLOR3
+*.color4:      COLOR4
+*.color5:      COLOR5
+*.color6:      COLOR6
+*.color7:      COLOR7
+*.color8:      COLOR8
+*.color9:      COLOR9
+*.color10:     COLOR10
+*.color11:     COLOR11
+*.color12:     COLOR12
+*.color13:     COLOR13
+*.color14:     COLOR14
+*.color15:     COLOR15
+
+! Rofi Theme:                        'bg',   'fg',   'bgalt', 'hlbg', 'hlfg'
+rofi.color-normal:                   COLOR0, COLOR4, COLOR0,  COLOR4,  COLOR0
+rofi.color-urgent:                   COLOR0, COLOR0, COLOR0,  COLOR0,  COLOR0
+rofi.color-active:                   COLOR9, COLOR9, COLOR9,  COLOR9,  COLOR9
+!                                    'background', 'border', 'separator'
+rofi.color-window:                   COLOR0,       FOREGROUND, COLOR1
+
+! Rofi Config:
+rofi.modi:                           combi,keys
+rofi.width:                          25
+rofi.lines:                          15
+rofi.columns:                        1
+rofi.font:                           Hack 10
+rofi.bw:                             2
+rofi.location:                       0
+rofi.padding:                        10
+rofi.yoffset:                        0
+rofi.xoffset:                        0
+rofi.fixed-num-lines:                true
+rofi.show-icons:                     true
+rofi.terminal:                       x-terminal-emulator
+rofi.run-command:                    {cmd}
+rofi.run-list-command:               
+rofi.run-shell-command:              {terminal} -e {cmd}
+rofi.window-match-fields:            all
+rofi.icon-theme:                     
+rofi.drun-match-fields:              name,exec,generic,categories
+rofi.drun-show-actions:              false
+rofi.drun-display-format:            {name}
+rofi.disable-history:                false
+rofi.ignored-prefixes:               
+rofi.sort:                           true
+rofi.sorting-method:                 fzf
+rofi.case-sensitive:                 false
+rofi.cycle:                          true
+rofi.sidebar-mode:                   false
+rofi.eh:                             1
+rofi.auto-select:                    false
+rofi.combi-modi:                     drun
+rofi.matching:                       glob
+rofi.tokenize:                       true
+rofi.dpi:                            120
+rofi.threads:                        2
+rofi.scroll-method:                  1
+rofi.click-to-exit:                  true
+rofi.show-match:                     true

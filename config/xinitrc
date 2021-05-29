@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+if test -d ~/.Xresources
+then
+  xrdb ~/.Xresources
+fi
+
+reset() {
+  if [[ -z $(command -v $1) ]]; then
+    echo "Unknown command $1"
+    return
+  fi
+  while [[ -n $(pgrep $1) ]]; do
+    killall $1 
+  done
+  if [[ -n $@ ]]; then
+    echo running: $@
+    exec $("$@")&
+  else
+    echo failed to run
+  fi
+}
+
+#xfce4-session --disable-tcp
+
+setxkbmap -option "caps:swapescape"
+#nitrogen --restore
+#nitrogen --random --set-zoom-fill --force-setter=xinerama ~/Pictures/wallpapers
+xsetroot -solid '#1d2021'
+#reset xfce4-power-manager
+#reset xfce4-panel -d --sm-client-disable
+reset tint2
+redshift -x
+reset redshift
+reset unclutter -idle 1 -jitter 5 -reset -root -visible -noevents
+#reset compton -b --vsync drm
+#reset nm-applet
+#reset blueman-applet
+#reset xfce4-clipman
+#reset dunst
+
+#/usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
+#/usr/bin/snap userd --autostart
+#/usr/bin/gnome-keyring-daemon --start --components=pksc11
+#/usr/bin/gnome-keyring-daemon --start --components=secrets
+#/usr/bin/gnome-keyring-daemon --start --components=ssh
+#/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+#start-pulseaudio-x11

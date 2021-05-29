@@ -1,0 +1,26 @@
+// POLAR NIGHT
+#define COLOR0  #2e3440
+#define COLOR1  #3b4252
+#define COLOR2  #434c5e
+#define COLOR3  #4c566a
+
+// SNOW STORM
+#define COLOR4  #d8dee9
+#define COLOR5  #e5e9f0
+#define COLOR6  #eceff4 
+#define COLOR7  #8fbcbb
+
+// FROST
+#define COLOR8  #88c0d0
+#define COLOR9  #81a1c1
+#define COLOR10 #5e81ac
+
+// AURORA
+#define COLOR11 #bf616a
+#define COLOR12 #d08770
+#define COLOR13 #ebcb8b
+#define COLOR14 #a3be8c 
+#define COLOR15 #b48ead
+
+#define FOREGROUND COLOR5
+#define BACKGROUND COLOR0
